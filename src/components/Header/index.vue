@@ -9,8 +9,8 @@
                         <p>尚品汇欢迎您！</p>
                         <p>
                             <span>请</span>
-                            <a href="###">登录</a>
-                            <a href="###" class="register">免费注册</a>
+                            <router-link to="/login">登录</router-link>
+                            <router-link to="/register" class="register">免费注册</router-link>
                         </p>
                     </div>
                     <div class="typeList">
@@ -34,8 +34,8 @@
                 </h1>
                 <div class="searchArea">
                     <form action="###" class="searchForm">
-                        <input type="text" id="autocomplete" class="input-error input-xxlarge" />
-                        <button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
+                        <input type="text" id="autocomplete" class="input-error input-xxlarge" v-model="keyword" />
+                        <button class="sui-btn btn-xlarge btn-danger" type="button" @click="search">搜索</button>
                     </form>
                 </div>
             </div>
@@ -45,7 +45,21 @@
 
 <script>
   export default {
-    
+    data() {
+        return {
+            keyword: ''
+        }
+    },
+    methods: {
+        search() {
+            // 传参1：字符串形式 
+            // this.$router.push('/search/'+ this.keyword + '?k=' + this.keyword.toUpperCase());
+            // 传参2：模板字符串
+            // this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`)
+            // 传参3：对象写法
+            this.$router.push({name:'search',params:{keyword:this.keyword},query:{k:this.keyword.toUpperCase()}})
+        }
+    },   
   }
 </script>
 

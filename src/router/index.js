@@ -9,20 +9,31 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/home',
-    components: Home
+    component: Home,
+    meta: {show:true}
+  },
+  {
+    path: '/search/:keyword',
+    component: Search,
+    meta: {show:true},
+    name: "search"
   },
   {
     path: '/login',
-    components: Login
+    component: Login,
+    meta: {show:false}
   },
   {
     path: '/register',
-    components:Register
+    component:Register,
+    meta: {show:false}
   },
+  
   {
-    path: '/search',
-    components:Search
-  },
+    path: '/',
+    redirect: '/home',
+    meta:{show:true}
+  }
 ]
 
 const router = new VueRouter({
